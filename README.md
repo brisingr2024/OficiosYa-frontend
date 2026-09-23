@@ -1,2 +1,0 @@
-# OficiosYa-frontend
-TFI programación
