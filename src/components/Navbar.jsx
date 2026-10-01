@@ -1,5 +1,5 @@
 import { useState } from "react";
-import login from "../pages/Login";
+import Login from "../pages/Login";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +41,7 @@ function Navbar() {
               Contacto
             </a>
             <a
-              href="/contacto"
+              href="./About"
               className="font-medium text-white transition hover:text-[#D8F373]"
             >
               Sobre nosotros
@@ -72,7 +72,7 @@ function Navbar() {
               Solicitar servicio
             </a>
             <a
-              href="../pages/Login"
+              href="./Login"
               className="rounded-full bg-[#D8F373] px-5 py-2.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-[#c9e667]"
             >
               Iniciar sesión
