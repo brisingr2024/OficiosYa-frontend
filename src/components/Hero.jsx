@@ -1,10 +1,15 @@
+import trabajador from "../assets/img/trabajador-carousel.jpg"
+import formaIzquierda from "../assets/img/top_left_shape.svg";
+import formaDerecha from "../assets/img/top_right_shape.svg";
+import { Link } from "react-router-dom";
+
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-white">
       
       {/* Decoración izquierda */}
       <img
-        src="/img/top_left_shape.svg"
+        src={formaIzquierda}
         alt=""
         aria-hidden="true"
         className="absolute left-0 top-0 hidden w-32 md:block lg:w-44"
@@ -12,7 +17,7 @@ function Hero() {
 
       {/* Decoración derecha */}
       <img
-        src="/img/top_right_shape.svg"
+        src={formaDerecha}
         alt=""
         aria-hidden="true"
         className="absolute right-0 top-0 hidden w-40 md:block lg:w-56"
@@ -24,7 +29,7 @@ function Hero() {
 
           {/* Imagen */}
           <img
-            src="/img/trabajador-carousel.jpg"
+            src={trabajador}
             alt="Trabajador de OficiosYA"
             className="absolute inset-0 h-full w-full scale-105 object-cover blur-[5px]"
           />
@@ -43,12 +48,12 @@ function Hero() {
               Servicios de calidad para satisfacer tus necesidades.
             </p>
 
-            <a
-              href="/contacto"
+            <Link
+              to="/contacto"
               className="mt-7 rounded-full bg-[#D8F373] px-6 py-3 font-semibold text-black transition hover:bg-[#c9e667]"
             >
               Ponte en contacto con nosotros
-            </a>
+            </Link>
 
           </div>
         </div>
