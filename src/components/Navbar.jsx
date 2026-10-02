@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "../pages/Login";
+import loro from "../assets/img/loro.png";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,15 +9,16 @@ function Navbar() {
     <header className="sticky top-0 z-50 border-b border-black/5 bg-[#0D7A5F]">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-
           {/* LOGO */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center gap-2">
             <img
-              src="/img/loro.png"
+              src={loro}
               alt="OficiosYA"
               className="h-12 w-auto"
             />
+            <span className="text-xl font-bold text-white">OficiosYA</span>
           </a>
+
 
           {/* NAVEGACIÓN DESKTOP */}
           <div className="hidden items-center gap-8 md:flex">
