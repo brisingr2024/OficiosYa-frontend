@@ -1,6 +1,7 @@
 import ServiceCard from "./ServiceCard";
 import { servicios } from "../data/servicios";
 
+
 function ServiceGrid() {
   return (
     <section className="bg-white py-12">

@@ -65,3 +65,16 @@ React facilita reutilizar componentes y mantener el código ordenado, y Vite ace
 
 **¿Por qué Tailwind CSS?**
 Porque permite estilizar directamente desde el marcado con clases utilitarias, resolver el responsive con prefijos como `md:` y `lg:` y mantener un diseño consistente sin escribir tantas reglas CSS propias.
+
+## Hooks de React: useEffect
+
+En la página de Contacto usamos `useEffect` para que el mensaje de agradecimiento desaparezca solo, 5 segundos después de enviar el formulario.
+
+**¿Por qué utilizamos useEffect?**
+Porque esperar unos segundos y después ocultar el mensaje es una acción que ocurre por detrás, como consecuencia de que cambió el estado `enviado`. Para este tipo de acciones se usa `useEffect`.
+
+**¿Cuándo se ejecuta?**
+Se ejecuta cuando la página carga y cada vez que `enviado` cambia. Cuando la persona envía el formulario, `enviado` pasa a verdadero, aparece el mensaje y arranca un temporizador de 5 segundos. Al terminar, `enviado` vuelve a falso y el mensaje se oculta.
+
+**¿Qué función cumplen sus dependencias?**
+La dependencia `[enviado]` le indica a React que solo ejecute el efecto cuando `enviado` cambie. Así el temporizador se crea únicamente cuando el mensaje aparece y no en cada cambio de la pantalla.
