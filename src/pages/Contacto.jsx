@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CampoFormulario from "../components/CampoFormulario";
+
 
 function Contacto() {
   const [enviado, setEnviado] = useState(false);
+
+  useEffect(() => {
+    if (!enviado) return;
+
+    const temporizador = setTimeout(() => setEnviado(false), 5000);
+
+    return () => clearTimeout(temporizador);
+  }, [enviado]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
