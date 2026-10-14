@@ -1,39 +1,50 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import useSweetAlert from '../hooks/useSweetAlert';
 
 const Login = () => {
+  const mostrarAlerta = useSweetAlert();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
-    const newErrors = {};
-    
-    if (!email) {
-      newErrors.email = 'Email es requerido';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Email inválido';
+    if (!email.trim()) {
+      return 'Ingresá tu email.';
     }
-    
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      return 'Ingresá una dirección de email válida.';
+    }
+
     if (!password) {
-      newErrors.password = 'Contraseña requerida';
+      return 'Ingresá tu contraseña.';
     }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+
+    return '';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (validate()) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        // Simulate successful login
-        alert('¡Iniciando sesión!');
-      }, 1500);
+
+    const mensajeValidacion = validate();
+    if (mensajeValidacion) {
+      await mostrarAlerta({
+        icon: 'warning',
+        title: 'Revisá tus datos',
+        text: mensajeValidacion,
+      });
+      return;
     }
+
+    setLoading(true);
+    setTimeout(async () => {
+      setLoading(false);
+      await mostrarAlerta({
+        icon: 'success',
+        title: 'Inicio de sesión',
+        text: '¡Iniciando sesión!',
+      });
+    }, 1500);
   };
 
   return (
@@ -41,7 +52,7 @@ const Login = () => {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-lg shadow-md p-8">
           <h2 className="text-2xl font-bold text-green-800 mb-6">Iniciar sesión</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
               <input
@@ -52,7 +63,6 @@ const Login = () => {
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                 placeholder="tu@email.com"
               />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
             <div className="mb-6">
               <label htmlFor="password" className="block text-gray-700 mb-2">Contraseña</label>
@@ -64,7 +74,6 @@ const Login = () => {
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
                 placeholder="••••••••"
               />
-              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
             </div>
             <button
               type="submit"

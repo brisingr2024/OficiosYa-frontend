@@ -27,21 +27,28 @@ Para los estilos se utilizó Tailwind CSS, un framework basado en clases utilita
 Además se emplearon HTML5 para la estructura de las páginas, y Git y GitHub para el control de versiones y el trabajo en equipo.
 
 ## Estrategias de SEO implementadas
-1. **Meta etiquetas esenciales**: `title` único y descriptivo por página, `meta description`, `meta robots` (index, follow) y `link rel="canonical"`.
-2. **Open Graph**: `og:type`, `og:title`, `og:description`, `og:image` y `og:url`, para optimizar cómo se comparte el sitio en redes sociales (Facebook, LinkedIn).
-3. **Datos estructurados JSON-LD (Schema.org)**: marcado `HomeAndConstructionBusiness` con dirección, teléfono y catálogo completo de servicios (`OfferCatalog`), para que Google entienda el rubro del negocio.
-4. **Jerarquía de encabezados clara**: un único `H1` por página con la palabra clave principal y estructura `H2 → H3` en la sección de servicios.
-5. **Enlaces descriptivos con atributo `title`**: cada "Ver detalles" incluye texto de anclaje único y un `title` específico del oficio, en vez de "click aquí".
-6. **HTML semántico**: uso de `header`, `nav`, `main`, `section`, `article`, `footer` y `address`, que ayuda a los buscadores a interpretar la estructura del contenido.
-7. **Texto alternativo en imágenes**: atributo `alt` descriptivo en las imágenes (por ejemplo, en la del hero).
-8. **Optimización de carga de fuentes**: `preconnect` a Google Fonts, lo que mejora la velocidad de carga y es un factor de posicionamiento.
-9. **Formulario de búsqueda con método GET**: genera URLs rastreables por los buscadores en vez de ocultar los parámetros de búsqueda.
-
-## Accesibilidad
-- Cada campo del formulario de contacto tiene su `label` asociada.
-- El atributo `lang="es"` indica el idioma de la página a navegadores y lectores de pantalla.
-- La estructura de encabezados ordenada y el HTML semántico facilitan la navegación con lectores de pantalla.
-- Los elementos interactivos pueden recorrerse con el teclado.
+**1. Metadatos básicos optimizados**
+- `<title>` descriptivo, con el nombre de la marca y la propuesta de valor: *"OficiosYA | Servicios Profesionales a tu Medida"*.
+- `meta description` clara y breve que explica qué ofrece la plataforma, ya que es el texto que suele mostrarse debajo del título en los resultados de Google.
+- `meta keywords` con los oficios principales (plomería, electricidad, gas, albañilería, carpintería, pintura, reparaciones). Aunque los buscadores actuales le dan poco peso, sirve como documentación de las palabras clave objetivo.
+- `meta author` para identificar al responsable del sitio.
+**2. Idioma y accesibilidad del documento**
+- Atributo `lang="es"` en la etiqueta `<html>`, que ayuda a los buscadores y a los lectores de pantalla a identificar el idioma del contenido.
+- `charset` UTF-8, para que los caracteres con tilde y la "ñ" se muestren correctamente.
+**3. Diseño responsive (mobile-first)**
+- `meta viewport` configurado para que el sitio se adapte a cualquier dispositivo. Google indexa priorizando la versión móvil, por lo que es un factor directo de posicionamiento.
+**4. URL canónica**
+- `<link rel="canonical">` apuntando a la URL principal del sitio, para evitar contenido duplicado y concentrar la autoridad en una sola dirección.
+**5. Open Graph para redes sociales**
+- Etiquetas `og:title`, `og:description`, `og:type` y `og:image`, que controlan cómo se ve el enlace al compartirlo en WhatsApp, Facebook, LinkedIn y otras plataformas. Una vista previa atractiva aumenta la tasa de clics.
+**6. Rendimiento de carga**
+- `preconnect` a Google Fonts para reducir el tiempo de conexión con el servidor de tipografías.
+- Fuente Inter cargada con `display=swap`, evitando que el texto quede invisible mientras se descarga la fuente.
+- Uso de Vite como herramienta de build, que genera archivos optimizados y minificados.
+**7. Identidad visual**
+- Favicon propio (el loro de la marca) y `theme-color` para reforzar el reconocimiento en pestañas del navegador y en dispositivos móviles.
+**8. Despliegue con HTTPS**
+- El sitio está publicado en Vercel, que sirve el contenido por HTTPS y con CDN global. Ambos son factores de confianza y velocidad que los buscadores valoran.
 
 ## Cómo ejecutar el proyecto
 Requisitos: tener instalado Node.js y Git.

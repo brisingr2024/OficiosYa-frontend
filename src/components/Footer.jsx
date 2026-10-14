@@ -6,7 +6,7 @@ function Footer() {
 
         <div className="mb-4">
           <img
-            src="/img/loro.png"
+            src="loro.png"
             alt="OficiosYA"
             className="mx-auto h-12 w-auto"
           />
