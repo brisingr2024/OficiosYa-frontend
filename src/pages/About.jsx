@@ -1,20 +1,5 @@
 import TeamMember from "../components/TeamMember";
 
-const integrantes = [
-  {
-    nombre: "Tobias Moschino Molina",
-    alt: "Foto de Tobias Moschino Molina",
-  },
-  {
-    nombre: "Luz Priscila Gonzalez Raflo",
-    alt: "Foto de Luz Priscila Gonzalez Raflo",
-  },
-  {
-    nombre: "Monetti",
-    alt: "Foto de Monetti",
-  },
-];
-
 function About() {
   return (
     <main className="bg-white">
@@ -69,17 +54,29 @@ function About() {
         </div>
       </section>
 
-      {/* INTEGRANTES */}
+           {/* INTEGRANTES */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {integrantes.map((integrante) => (
-            <TeamMember
-              key={integrante.nombre}
-              nombre={integrante.nombre}
-              alt={integrante.alt}
-            />
-          ))}
+
+          <TeamMember
+            nombre="Tobias Moschino Molina"
+            alt="Foto de Tobias Moschino Molina"
+            img="/programador.jpeg"
+          />
+
+          <TeamMember
+            nombre="Luz Priscila Gonzalez Raflo"
+            alt="Foto de Luz Priscila Gonzalez Raflo"
+            img="/programador.jpeg"
+          />
+
+          <TeamMember
+            nombre="Monetti"
+            alt="Foto de Monetti"
+            img="/programador.jpeg"
+          />
+
         </div>
 
       </section>
