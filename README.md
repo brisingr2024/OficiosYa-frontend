@@ -1,98 +1,145 @@
-# OficiosYa
+# OficiosYA
 
-## Integrantes
-- Moschino Molina Tobias
-- Gonzalez Raflo Luz
-- Monetti Camila
+OficiosYA es una aplicación web de frontend que presenta oficios y conecta a personas que necesitan resolver trabajos del hogar con profesionales. Permite explorar un catálogo de servicios, buscar profesionales por oficio y acceder a formularios de contacto.
 
-## Descripción breve
-OficiosYa es un sitio web que conecta a personas que necesitan resolver un problema del hogar (plomería, gas, electricidad, albañilería, carpintería, pintura, jardinería, limpieza, mudanzas, cerrajería y climatización) con profesionales de oficios. Incluye una página de inicio con presentación de servicios y buscador, y una página de contacto con formulario para solicitar presupuestos.
+## Contenidos
 
-## Objetivo del proyecto
-Facilitar el primer contacto entre quien necesita un servicio y quien lo ofrece. El usuario puede explorar los oficios disponibles, buscar el que necesita y pedir un presupuesto desde un formulario simple, sin tener que recorrer otras plataformas o buscar contactos por separado.
+- [Funcionalidades](#funcionalidades)
+- [Tecnologías](#tecnologías)
+- [Requisitos](#requisitos)
+- [Instalación y ejecución](#instalación-y-ejecución)
+- [Configuración de la API](#configuración-de-la-api)
+- [Rutas de la aplicación](#rutas-de-la-aplicación)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Alcance actual](#alcance-actual)
+- [Equipo](#equipo)
 
 ## Funcionalidades
-- **Página de inicio** con presentación del sitio y sección principal (hero).
-- **Catálogo de servicios** con tarjetas para cada oficio (plomería, gas, electricidad, albañilería, carpintería, pintura, jardinería, limpieza, mudanzas, cerrajería y climatización), cada una con su enlace "Ver detalles".
-- **Buscador de servicios**, que utiliza el método GET para generar URLs compartibles y rastreables.
-- **Página de contacto** con formulario para solicitar presupuestos.
-- **Diseño responsive**, adaptado a celulares, tablets y computadoras con Tailwind CSS.
-- **Optimización SEO y accesibilidad**, detalladas más abajo.
 
-## ¿Tecnologías utilizadas?
-Para el desarrollo se utilizó React como biblioteca principal para construir la interfaz, junto con Vite como herramienta de desarrollo y empaquetado. React permite dividir la página en componentes reutilizables (por ejemplo, la tarjeta de cada servicio o el formulario de contacto), y Vite ofrece un arranque rápido del proyecto y recarga inmediata de los cambios mientras se programa.
+- **Inicio:** presenta OficiosYA y muestra un catálogo local de oficios mediante tarjetas.
+- **Búsqueda desde el navbar:** permite buscar profesionales escribiendo un oficio. El término se incluye en el parámetro `servicio` de la URL, por ejemplo, `/servicios?servicio=plomeria`.
+- **Servicios:** consulta trabajadores a una API mediante Axios y filtra los resultados por el campo `oficio`. La búsqueda no distingue mayúsculas ni tildes. Si se entra sin un término, se muestran todos los trabajadores devueltos por la API.
+- **Estados de la consulta:** se muestra un indicador mientras carga; los errores de configuración o conexión se notifican con SweetAlert2. Si no hay coincidencias, se muestra una alerta informativa.
+- **Contacto:** valida los campos requeridos y el formato del email, informa el resultado con SweetAlert2 y limpia el formulario tras confirmar.
+- **Inicio de sesión:** valida email y contraseña y muestra un indicador de espera. La operación es una simulación de interfaz.
+- **Diseño adaptable:** utiliza clases responsive de Tailwind CSS para distintos tamaños de pantalla.
+- **Navegación:** React Router gestiona las rutas del sitio y muestra una página para rutas no encontradas.
 
-Para los estilos se utilizó Tailwind CSS, un framework basado en clases utilitarias que permite aplicar el diseño directamente en el marcado, mantener una identidad visual coherente y construir interfaces adaptables con rapidez, sin depender de hojas de estilo extensas.
+Las alertas de SweetAlert2 se cierran automáticamente a los cinco segundos. Este comportamiento está centralizado en un hook con `useEffect`.
 
-Además se emplearon HTML5 para la estructura de las páginas, y Git y GitHub para el control de versiones y el trabajo en equipo.
+## Tecnologías
 
-## Estrategias de SEO implementadas
-**1. Metadatos básicos optimizados**
-- `<title>` descriptivo, con el nombre de la marca y la propuesta de valor: *"OficiosYA | Servicios Profesionales a tu Medida"*.
-- `meta description` clara y breve que explica qué ofrece la plataforma, ya que es el texto que suele mostrarse debajo del título en los resultados de Google.
-- `meta keywords` con los oficios principales (plomería, electricidad, gas, albañilería, carpintería, pintura, reparaciones). Aunque los buscadores actuales le dan poco peso, sirve como documentación de las palabras clave objetivo.
-- `meta author` para identificar al responsable del sitio.
-**2. Idioma y accesibilidad del documento**
-- Atributo `lang="es"` en la etiqueta `<html>`, que ayuda a los buscadores y a los lectores de pantalla a identificar el idioma del contenido.
-- `charset` UTF-8, para que los caracteres con tilde y la "ñ" se muestren correctamente.
-**3. Diseño responsive (mobile-first)**
-- `meta viewport` configurado para que el sitio se adapte a cualquier dispositivo. Google indexa priorizando la versión móvil, por lo que es un factor directo de posicionamiento.
-**4. URL canónica**
-- `<link rel="canonical">` apuntando a la URL principal del sitio, para evitar contenido duplicado y concentrar la autoridad en una sola dirección.
-**5. Open Graph para redes sociales**
-- Etiquetas `og:title`, `og:description`, `og:type` y `og:image`, que controlan cómo se ve el enlace al compartirlo en WhatsApp, Facebook, LinkedIn y otras plataformas. Una vista previa atractiva aumenta la tasa de clics.
-**6. Rendimiento de carga**
-- `preconnect` a Google Fonts para reducir el tiempo de conexión con el servidor de tipografías.
-- Fuente Inter cargada con `display=swap`, evitando que el texto quede invisible mientras se descarga la fuente.
-- Uso de Vite como herramienta de build, que genera archivos optimizados y minificados.
-**7. Identidad visual**
-- Favicon propio (el loro de la marca) y `theme-color` para reforzar el reconocimiento en pestañas del navegador y en dispositivos móviles.
-**8. Despliegue con HTTPS**
-- El sitio está publicado en Vercel, que sirve el contenido por HTTPS y con CDN global. Ambos son factores de confianza y velocidad que los buscadores valoran.
+- React y React DOM
+- Vite
+- React Router
+- Axios
+- SweetAlert2
+- Tailwind CSS 4
+- JavaScript (ES modules)
 
-## Cómo ejecutar el proyecto
-Requisitos: tener instalado Node.js y Git.
+## Requisitos
+
+- Node.js compatible con la versión de Vite instalada en el proyecto.
+- npm.
+- Una URL accesible para la API de trabajadores configurada en `VITE_API_URL`.
+
+## Instalación y ejecución
+
+Desde la carpeta del proyecto:
 
 ```bash
-git clone <URL-del-repositorio>
-cd <carpeta-del-proyecto>
 npm install
+```
+
+Crear el archivo local `.env` como se describe en [Configuración de la API](#configuración-de-la-api) y luego iniciar el servidor:
+
+```bash
 npm run dev
 ```
 
-Una vez iniciado, el sitio queda disponible en `http://localhost:5173`.
+Vite informa en la terminal la dirección local donde se puede abrir la aplicación (normalmente `http://localhost:5173`).
 
-## Preguntas frecuentes
+### Comandos disponibles
 
-**¿Qué ventaja tiene usar HTML semántico?**
-Mejora tanto el SEO como la accesibilidad, porque buscadores y lectores de pantalla entienden mejor el rol de cada parte de la página.
+```bash
+npm run dev      # Inicia el servidor de desarrollo
+npm run build    # Genera la versión de producción en dist/
+npm run preview  # Sirve localmente la última compilación
+npm run lint     # Ejecuta ESLint
+```
 
-**¿Por qué React y Vite?**
-React facilita reutilizar componentes y mantener el código ordenado, y Vite acelera el desarrollo con arranque rápido y recarga instantánea.
+## Configuración de la API
 
-**¿Por qué Tailwind CSS?**
-Porque permite estilizar directamente desde el marcado con clases utilitarias, resolver el responsive con prefijos como `md:` y `lg:` y mantener un diseño consistente sin escribir tantas reglas CSS propias.
+La página Servicios obtiene los profesionales desde la URL indicada por la variable de entorno `VITE_API_URL`. No se debe escribir la URL de la API directamente en los componentes.
 
+1. Crear `.env` en la raíz del proyecto.
+2. Definir la URL de la API:
 
-## Hooks de React: useState
-### ¿Por qué usamos `useState`?
-Necesitamos que la interfaz cambie cuando el usuario envía el formulario, mostrando un mensaje de confirmación. Una variable común no sirve para esto, porque al modificarla React no vuelve a dibujar el componente y la pantalla seguiría igual. Con `useState`, en cambio, cada vez que el estado se actualiza React vuelve a renderizar el componente y la pantalla refleja el cambio de inmediato.
+   ```dotenv
+   VITE_API_URL=https://tu-api.com/trabajadores
+   ```
 
-En este caso, `enviado` guarda si el formulario ya fue enviado (`false` si todavía no, `true` si ya se envió), y `setEnviado` es la función que se usa para modificar ese valor.
+3. Guardar el archivo y reiniciar el servidor de desarrollo si ya estaba ejecutándose.
 
-### ¿Cuándo se ejecuta?
+El archivo `.gitignore` excluye los archivos `.env*`; el `.env` local no debe subirse al repositorio. Cada persona que clone el proyecto debe configurar su propio archivo.
 
-La declaración se ejecuta cuando el componente se carga por primera vez, y ahí `enviado` se inicializa en `false`, por lo que el mensaje de confirmación no se muestra. Luego, cuando el usuario envía el formulario, la función `handleSubmit` llama a `setEnviado(true)`. Ese cambio hace que React vuelva a renderizar el componente y, gracias al renderizado condicional `{enviado && ...}`, aparece el mensaje de confirmación.
+La API debe responder a una petición `GET` con un arreglo JSON de trabajadores. La interfaz utiliza estos campos:
 
-## Hooks de React: useEffect
+| Campo | Uso |
+| --- | --- |
+| `id` | Identificador del trabajador y clave de la tarjeta. |
+| `nombre` | Nombre del profesional, mostrado en la descripción de la tarjeta. |
+| `oficio` | Texto utilizado para filtrar y como título de la tarjeta. |
+| `ubicacion` | Ubicación del profesional, mostrada en la descripción. |
+| `foto` | URL de la imagen del profesional, utilizada en la tarjeta. |
 
-En la página de Contacto usamos `useEffect` para que el mensaje de agradecimiento desaparezca solo, 5 segundos después de enviar el formulario.
+`id`, `nombre`, `ubicacion` y `foto` pueden faltar sin impedir que se muestre el oficio; cuando falta `oficio`, se presenta como “Oficio sin especificar” y no coincide con búsquedas de texto.
 
-**¿Por qué utilizamos useEffect?**
-Porque esperar unos segundos y después ocultar el mensaje es una acción que ocurre por detrás, como consecuencia de que cambió el estado `enviado`. Para este tipo de acciones se usa `useEffect`.
+La página Inicio obtiene sus tarjetas de datos locales en `src/data/servicios.js`; la página Servicios muestra trabajadores recibidos desde la API. Son dos listados distintos.
 
-**¿Cuándo se ejecuta?**
-Se ejecuta cuando la página carga y cada vez que `enviado` cambia. Cuando la persona envía el formulario, `enviado` pasa a verdadero, aparece el mensaje y arranca un temporizador de 5 segundos. Al terminar, `enviado` vuelve a falso y el mensaje se oculta.
+## Rutas de la aplicación
 
-**¿Qué función cumplen sus dependencias?**
-La dependencia `[enviado]` le indica a React que solo ejecute el efecto cuando `enviado` cambie. Así el temporizador se crea únicamente cuando el mensaje aparece y no en cada cambio de la pantalla.
+| Ruta | Página |
+| --- | --- |
+| `/` | Inicio y catálogo local de servicios. |
+| `/servicios` | Todos los profesionales que devuelve la API. |
+| `/servicios?servicio=plomeria` | Profesionales cuyo oficio coincide con el término buscado. |
+| `/contacto` | Formulario de contacto. |
+| `/login` | Formulario de inicio de sesión simulado. |
+| `/about` | Información del proyecto y del equipo. |
+| Cualquier otra ruta | Página no encontrada. |
+
+## Estructura del proyecto
+
+```text
+.
+├── public/                  # Recursos servidos directamente, como el favicon y el logo
+├── src/
+│   ├── assets/              # Imágenes y recursos importados por los componentes
+│   ├── components/          # Navbar, footer, hero, tarjetas, formularios y rutas
+│   ├── data/                # Catálogo local de servicios
+│   ├── hooks/               # Hooks compartidos, como las alertas temporizadas
+│   ├── pages/               # Inicio, servicios, contacto, login, about y 404
+│   ├── App.jsx              # Entrada de la interfaz
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx             # Montaje de React
+├── .env                     # Configuración local, no versionada
+├── .gitignore
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+## Alcance actual
+
+- El formulario de contacto solo valida los datos, muestra una confirmación y reinicia sus campos; actualmente no envía la información a un servidor.
+- El inicio de sesión es una simulación visual: no autentica usuarios ni consulta un backend.
+- El botón “Ver servicio” de las tarjetas todavía no navega a una página de detalle.
+- El catálogo de Inicio es estático y no depende de la API. El listado y el filtro de la ruta Servicios sí dependen de la API y de que esta responda correctamente.
+
+## Equipo
+
+- Tobias Moschino Molina
+- Luz Priscila Gonzalez Raflo
+- Monetti
