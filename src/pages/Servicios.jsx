@@ -1,5 +1,5 @@
 import ServiceGrid from "../components/ServiceGrid";
-import ConsumoAPI from './components/ConsumoAPI';
+import ConsumoAPI from "../components/ConsumoAPI";
 
 function Servicios() {
   return (
