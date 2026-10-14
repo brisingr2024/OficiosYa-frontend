@@ -72,7 +72,7 @@ function About() {
       {/* INTEGRANTES */}
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {integrantes.map((integrante) => (
             <TeamMember
               key={integrante.nombre}

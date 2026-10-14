@@ -17,10 +17,10 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-[#0D7A5F]">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-20 items-center justify-between gap-4">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex shrink-0 items-center gap-2">
             <img
               src={loro}
               alt="OficiosYA"
@@ -32,7 +32,7 @@ function Navbar() {
           </Link>
 
           {/* NAVEGACIÓN DESKTOP */}
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden shrink-0 items-center gap-6 xl:flex">
             <Link
               to="/"
               className="relative font-medium text-white transition hover:text-[#D8F373]"
@@ -63,7 +63,7 @@ function Navbar() {
           </div>
 
           {/* DERECHA DESKTOP */}
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden shrink-0 items-center gap-2 xl:flex">
 
             {/* BUSCADOR */}
             <form onSubmit={buscarServicio} className="relative">
@@ -72,7 +72,7 @@ function Navbar() {
                 placeholder="¿Qué servicio necesitás?"
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
-                className="h-10 w-56 rounded-full bg-white px-4 pr-10 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#D8F373]"
+                className="h-10 w-48 rounded-full bg-white px-4 pr-10 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-[#D8F373]"
               />
 
               <button
@@ -87,14 +87,14 @@ function Navbar() {
             {/* BOTONES */}
             <Link
               to="/contacto"
-              className="rounded-full bg-[#D8F373] px-5 py-2.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-[#c9e667]"
+              className="whitespace-nowrap rounded-full bg-[#D8F373] px-4 py-2.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-[#c9e667]"
             >
               Solicitar servicio
             </Link>
 
             <Link
               to="/login"
-              className="rounded-full bg-[#D8F373] px-5 py-2.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-[#c9e667]"
+              className="whitespace-nowrap rounded-full bg-[#D8F373] px-4 py-2.5 font-semibold text-black transition hover:-translate-y-0.5 hover:bg-[#c9e667]"
             >
               Iniciar sesión
             </Link>
@@ -104,7 +104,7 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-lg p-2 text-white transition hover:bg-white/10 md:hidden"
+            className="shrink-0 rounded-lg p-2 text-white transition hover:bg-white/10 xl:hidden"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
           >
@@ -116,7 +116,7 @@ function Navbar() {
 
         {/* MENÚ MOBILE */}
         {menuOpen && (
-          <div className="border-t border-white/20 py-5 md:hidden">
+          <div className="border-t border-white/20 py-5 xl:hidden">
             <div className="flex flex-col gap-2">
 
               <Link
@@ -153,14 +153,20 @@ function Navbar() {
 
               {/* BUSCADOR MOBILE */}
               <div className="mt-3 border-t border-white/20 pt-4">
-                <form onSubmit={buscarServicio}>
+                <form onSubmit={buscarServicio} className="flex gap-2">
                   <input
                     type="search"
                     placeholder="¿Qué servicio necesitás?"
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
-                    className="h-11 w-full rounded-full bg-white px-4 text-sm text-gray-800 placeholder:text-gray-400 outline-none"
+                    className="h-11 min-w-0 flex-1 rounded-full bg-white px-4 text-sm text-gray-800 placeholder:text-gray-400 outline-none"
                   />
+                  <button
+                    type="submit"
+                    className="h-11 rounded-full bg-[#D8F373] px-5 font-semibold text-black transition hover:bg-[#c9e667]"
+                  >
+                    Buscar
+                  </button>
                 </form>
 
                 <Link
