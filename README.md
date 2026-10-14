@@ -66,6 +66,17 @@ React facilita reutilizar componentes y mantener el código ordenado, y Vite ace
 **¿Por qué Tailwind CSS?**
 Porque permite estilizar directamente desde el marcado con clases utilitarias, resolver el responsive con prefijos como `md:` y `lg:` y mantener un diseño consistente sin escribir tantas reglas CSS propias.
 
+
+## Hooks de React: useState
+### ¿Por qué usamos `useState`?
+Necesitamos que la interfaz cambie cuando el usuario envía el formulario, mostrando un mensaje de confirmación. Una variable común no sirve para esto, porque al modificarla React no vuelve a dibujar el componente y la pantalla seguiría igual. Con `useState`, en cambio, cada vez que el estado se actualiza React vuelve a renderizar el componente y la pantalla refleja el cambio de inmediato.
+
+En este caso, `enviado` guarda si el formulario ya fue enviado (`false` si todavía no, `true` si ya se envió), y `setEnviado` es la función que se usa para modificar ese valor.
+
+### ¿Cuándo se ejecuta?
+
+La declaración se ejecuta cuando el componente se carga por primera vez, y ahí `enviado` se inicializa en `false`, por lo que el mensaje de confirmación no se muestra. Luego, cuando el usuario envía el formulario, la función `handleSubmit` llama a `setEnviado(true)`. Ese cambio hace que React vuelva a renderizar el componente y, gracias al renderizado condicional `{enviado && ...}`, aparece el mensaje de confirmación.
+
 ## Hooks de React: useEffect
 
 En la página de Contacto usamos `useEffect` para que el mensaje de agradecimiento desaparezca solo, 5 segundos después de enviar el formulario.
