@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loro from "../assets/img/loro.png";
@@ -10,11 +9,9 @@ function Navbar() {
 
   function buscarServicio(e) {
     e.preventDefault();
-
-    if (busqueda.trim() !== "") {
-      navigate(`/resultados?servicio=${encodeURIComponent(busqueda.trim())}`);
-      setMenuOpen(false);
-    }
+    const termino = busqueda.trim();
+    navigate(termino ? `/servicios?servicio=${encodeURIComponent(termino)}` : "/servicios");
+    setMenuOpen(false);
   }
 
   return (
