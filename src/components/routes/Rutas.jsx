@@ -8,7 +8,6 @@ import About from "../../pages/About";
 import Error404 from "../../pages/Error404";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import Resultados from "../../pages/Resultados";
 
 function Rutas() {
     return (
@@ -21,7 +20,6 @@ function Rutas() {
                 <Route path="/contacto" element={<Contacto />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/resultados" element={<Resultados />} />
                 <Route path="*" element={<Error404 />} />
             </Routes>
 

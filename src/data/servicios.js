@@ -7,9 +7,13 @@ import seguridadelectronica from "../assets/img/seguridadelectronica.jpg";
 import herreria from "../assets/img/herreria.jpg";
 import reparacionelect from "../assets/img/reparacionelect.jpg";
 import soportetecnico from "../assets/img/soportetecnico.jpg";
-import refrigeracion from "../assets/img/refrigeracion.jpg";
 import redescableado from "../assets/img/redescableado.jpg";
 import construcciondurlock from "../assets/img/construcciondurlock.jpg";
+import controlplagas from "../assets/img/controlplagas.jpg";
+import vidrieria from "../assets/img/vidrieria.jpg";
+import automatizacionportones from "../assets/img/automatizacionportones.jpg";
+import bombasdeagua from "../assets/img/bombasdeagua.jpg";
+
 
 
 export const servicios = [
@@ -61,12 +65,12 @@ export const servicios = [
     descripcion:
       "Diagnóstico y service técnico de lavarropas, secarropas, heladeras, lavavajillas y microondas multimarca.",
   },
-  {
+  /*{
     nombre: "Refrigeración Comercial e Industrial",
     imagen: refrigeracion,
     descripcion:
       "Mantenimiento correctivo y preventivo de cámaras frigoríficas, bateas, vitrinas exhibidoras y chillers.",
-  },
+  },*/
   {
     nombre: "Redes, Cableado Estructurado y Fibra Óptica",
     imagen: redescableado,
@@ -85,14 +89,13 @@ export const servicios = [
     descripcion:
       "Instalación y configuración de cámaras de seguridad IP y HD, alarmas comunitarias y monitoreo remoto.",
   },
-  /*
   {
     nombre: "Automatización de Portones y Control de Acceso",
-    imagen: "/img/automatizacionportones.jpg",
+    imagen: automatizacionportones,
     descripcion:
       "Montaje de motores corredizos, levadizos y batientes, con cerraduras magnéticas y lectores biométricos.",
   },
-  {
+  /*{
     nombre: "Energía Solar y Paneles Fotovoltaicos",
     imagen: "/img/energiasolar.jpg",
     descripcion:
@@ -110,19 +113,18 @@ export const servicios = [
     descripcion:
       "Escaneo computarizado, cambio de fluidos, distribución, frenos y tren delantero para vehículos particulares y utilitarios.",
   },
-  {
+  */{
     nombre: "Bombas de Agua y Presurizadoras",
-    imagen: "/img/bombasdeagua.jpg",
+    imagen: bombasdeagua,
     descripcion:
       "Instalación, bobinado y mantenimiento de bombas sumergibles, periféricas, centrífugas y sistemas presurizadores.",
   },
   {
     nombre: "Control de Plagas y Fumigación",
-    imagen: "/img/controlplagas.jpg",
+    imagen: controlplagas,
     descripcion:
-      "Desinsectación, desratización, control de termitas y desinfección preventiva para viviendas, locales e industrias.",
-  }, 
-  
+      "Desinfectación, desratización, control de termitas y desinfección preventiva para viviendas, locales e industrias.",
+  },/* 
   {
     nombre: "Tratamiento y Pulido de Pisos",
     imagen: "/img/tratamientopisos.jpg",
@@ -146,13 +148,13 @@ export const servicios = [
     imagen: "/img/domotica.jpg",
     descripcion:
       "Automatización de iluminación, persianas, climatización inteligente y control por comandos de voz o aplicaciones móviles.",
-  },
+  },*/
   {
     nombre: "Vidriería y Carpintería de Aluminio",
-    imagen: "/img/vidrieria.jpg",
+    imagen: vidrieria,
     descripcion:
       "Fabricación de aberturas de aluminio a medida, cerramientos vidriados, mamparas de baño y doble vidriado hermético.",
-  },
+  }/*,
   {
     nombre: "Aislación Térmica y Acústica",
     imagen: "/img/aislaciontermica.jpg",
