@@ -1,22 +1,34 @@
-import { useState, useEffect } from "react";
 import CampoFormulario from "../components/CampoFormulario";
+import useSweetAlert from "../hooks/useSweetAlert";
 
 
 function Contacto() {
-  const [enviado, setEnviado] = useState(false);
+  const mostrarAlerta = useSweetAlert();
 
-  useEffect(() => {
-    if (!enviado) return;
-
-    const temporizador = setTimeout(() => setEnviado(false), 5000);
-
-    return () => clearTimeout(temporizador);
-  }, [enviado]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setEnviado(true);
-    e.target.reset();
+    const formulario = e.currentTarget;
+
+    if (!formulario.checkValidity()) {
+      const campoInvalido = formulario.querySelector(":invalid");
+      const mensaje = campoInvalido?.type === "email" && campoInvalido.value
+        ? "Ingresá una dirección de email válida."
+        : "Completá todos los campos antes de enviar el mensaje.";
+
+      await mostrarAlerta({
+        icon: "warning",
+        title: "Revisá el formulario",
+        text: mensaje,
+      });
+      return;
+    }
+
+    await mostrarAlerta({
+      icon: "success",
+      title: "Mensaje enviado",
+      text: "¡Gracias! Recibimos tu mensaje y te responderemos pronto.",
+    });
+    formulario.reset();
   };
 
   return (
@@ -29,7 +41,7 @@ function Contacto() {
           Complete el formulario indicando su solicitud y le responderemos a la brevedad.
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-4 text-left">
+        <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-4 text-left">
           <CampoFormulario id="nombre" label="Nombre completo" />
           <CampoFormulario id="email" label="Email" tipo="email" />
           <CampoFormulario id="detalle" label="Detalle de su solicitud" multilinea />
@@ -41,11 +53,6 @@ function Contacto() {
             Enviar mensaje
           </button>
 
-          {enviado && (
-            <p className="text-center font-medium text-[#0D7A5F]">
-              ¡Gracias! Recibimos tu mensaje y te responderemos pronto.
-            </p>
-          )}
         </form>
       </div>
     </section>

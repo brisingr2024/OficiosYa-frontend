@@ -1,4 +1,4 @@
-# OficiosYa - Repositorio frontend 2
+# OficiosYa 
 
 Aplicación web para encontrar profesionales de oficios y servicios para el hogar. Este es el segundo repositorio del proyecto: la versión desarrollada con React y Vite, en la que se migraron y organizaron las distintas partes de la interfaz.
 
@@ -102,7 +102,7 @@ Tailwind CSS se utiliza para definir colores, tipografías, espaciados, bordes, 
 
 Los componentes utilizan elementos semánticos como `header`, `nav`, `main`, `section`, `article` y `footer`. Las imágenes de los servicios incluyen texto alternativo, y los controles del menú y de búsqueda tienen etiquetas accesibles.
 
-## SEO implementado
+## Estrategias SEO implementadas
 
 En `index.html` se configuraron prácticas básicas de SEO:
 

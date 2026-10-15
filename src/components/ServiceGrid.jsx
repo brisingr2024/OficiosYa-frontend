@@ -2,19 +2,22 @@ import ServiceCard from "./ServiceCard";
 import { servicios } from "../data/servicios";
 
 
-function ServiceGrid() {
+function ServiceGrid({
+  servicios: serviciosMostrados = servicios,
+  titulo = "Nuestros Servicios de Oficios y Mantenimiento",
+}) {
   return (
     <section className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <h2 className="mb-10 text-center text-3xl font-bold text-[#0D7A5F] md:text-4xl">
-          Nuestros Servicios de Oficios y Mantenimiento
+          {titulo}
         </h2>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {servicios.map((servicio) => (
+          {serviciosMostrados.map((servicio) => (
             <ServiceCard
-              key={servicio.nombre}
+              key={servicio.id ?? servicio.nombre}
               servicio={servicio}
             />
           ))}
