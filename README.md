@@ -1,98 +1,156 @@
-# OficiosYa
+# OficiosYa - Repositorio frontend 2
+
+Aplicación web para encontrar profesionales de oficios y servicios para el hogar. Este es el segundo repositorio del proyecto: la versión desarrollada con React y Vite, en la que se migraron y organizaron las distintas partes de la interfaz.
 
 ## Integrantes
+
 - Moschino Molina Tobias
 - Gonzalez Raflo Luz
 - Monetti Camila
 
-## Descripción breve
-OficiosYa es un sitio web que conecta a personas que necesitan resolver un problema del hogar (plomería, gas, electricidad, albañilería, carpintería, pintura, jardinería, limpieza, mudanzas, cerrajería y climatización) con profesionales de oficios. Incluye una página de inicio con presentación de servicios y buscador, y una página de contacto con formulario para solicitar presupuestos.
+## Descripción y objetivo
 
-## Objetivo del proyecto
-Facilitar el primer contacto entre quien necesita un servicio y quien lo ofrece. El usuario puede explorar los oficios disponibles, buscar el que necesita y pedir un presupuesto desde un formulario simple, sin tener que recorrer otras plataformas o buscar contactos por separado.
+OficiosYa conecta a personas que necesitan resolver un problema del hogar con profesionales de distintos rubros. Se pueden explorar servicios, buscar profesionales por oficio y enviar una consulta desde el formulario de contacto.
+
+El objetivo es facilitar el primer contacto entre quien necesita un servicio y quien lo ofrece, desde una interfaz adaptable a distintos dispositivos.
 
 ## Funcionalidades
-- **Página de inicio** con presentación del sitio y sección principal (hero).
-- **Catálogo de servicios** con tarjetas para cada oficio (plomería, gas, electricidad, albañilería, carpintería, pintura, jardinería, limpieza, mudanzas, cerrajería y climatización), cada una con su enlace "Ver detalles".
-- **Buscador de servicios**, que utiliza el método GET para generar URLs compartibles y rastreables.
-- **Página de contacto** con formulario para solicitar presupuestos.
-- **Diseño responsive**, adaptado a celulares, tablets y computadoras con Tailwind CSS.
-- **Optimización SEO y accesibilidad**, detalladas más abajo.
 
-## ¿Tecnologías utilizadas?
-Para el desarrollo se utilizó React como biblioteca principal para construir la interfaz, junto con Vite como herramienta de desarrollo y empaquetado. React permite dividir la página en componentes reutilizables (por ejemplo, la tarjeta de cada servicio o el formulario de contacto), y Vite ofrece un arranque rápido del proyecto y recarga inmediata de los cambios mientras se programa.
+- Página de inicio con presentación del proyecto y catálogo de servicios.
+- Catálogo de oficios con tarjetas generadas dinámicamente.
+- Búsqueda de profesionales por oficio. El término se incluye en la URL como parámetro (`/servicios?servicio=...`), por lo que la búsqueda se puede compartir o volver a abrir.
+- Consulta de profesionales a una API mediante Axios, con estados de carga y error.
+- Mensajes de error, validación y confirmación mediante SweetAlert2.
+- Formulario de contacto con validaciones del navegador. El formulario muestra una confirmación en pantalla; no envía ni almacena los datos en un servidor.
+- Navegación entre páginas y menú adaptable para pantallas pequeñas.
+- Página de error para rutas que no existen.
 
-Para los estilos se utilizó Tailwind CSS, un framework basado en clases utilitarias que permite aplicar el diseño directamente en el marcado, mantener una identidad visual coherente y construir interfaces adaptables con rapidez, sin depender de hojas de estilo extensas.
+## Tecnologías
 
-Además se emplearon HTML5 para la estructura de las páginas, y Git y GitHub para el control de versiones y el trabajo en equipo.
+- React y JavaScript
+- Vite
+- Tailwind CSS para los estilos y el diseño responsive
+- React Router para la navegación
+- Axios para las peticiones HTTP
+- SweetAlert2 para los mensajes al usuario
+- HTML semántico
+- Git y GitHub para el control de versiones
+- Vercel para el deploy
 
-## Estrategias de SEO implementadas
-**1. Metadatos básicos optimizados**
-- `<title>` descriptivo, con el nombre de la marca y la propuesta de valor: *"OficiosYA | Servicios Profesionales a tu Medida"*.
-- `meta description` clara y breve que explica qué ofrece la plataforma, ya que es el texto que suele mostrarse debajo del título en los resultados de Google.
-- `meta keywords` con los oficios principales (plomería, electricidad, gas, albañilería, carpintería, pintura, reparaciones). Aunque los buscadores actuales le dan poco peso, sirve como documentación de las palabras clave objetivo.
-- `meta author` para identificar al responsable del sitio.
-**2. Idioma y accesibilidad del documento**
-- Atributo `lang="es"` en la etiqueta `<html>`, que ayuda a los buscadores y a los lectores de pantalla a identificar el idioma del contenido.
-- `charset` UTF-8, para que los caracteres con tilde y la "ñ" se muestren correctamente.
-**3. Diseño responsive (mobile-first)**
-- `meta viewport` configurado para que el sitio se adapte a cualquier dispositivo. Google indexa priorizando la versión móvil, por lo que es un factor directo de posicionamiento.
-**4. URL canónica**
-- `<link rel="canonical">` apuntando a la URL principal del sitio, para evitar contenido duplicado y concentrar la autoridad en una sola dirección.
-**5. Open Graph para redes sociales**
-- Etiquetas `og:title`, `og:description`, `og:type` y `og:image`, que controlan cómo se ve el enlace al compartirlo en WhatsApp, Facebook, LinkedIn y otras plataformas. Una vista previa atractiva aumenta la tasa de clics.
-**6. Rendimiento de carga**
-- `preconnect` a Google Fonts para reducir el tiempo de conexión con el servidor de tipografías.
-- Fuente Inter cargada con `display=swap`, evitando que el texto quede invisible mientras se descarga la fuente.
-- Uso de Vite como herramienta de build, que genera archivos optimizados y minificados.
-**7. Identidad visual**
-- Favicon propio (el loro de la marca) y `theme-color` para reforzar el reconocimiento en pestañas del navegador y en dispositivos móviles.
-**8. Despliegue con HTTPS**
-- El sitio está publicado en Vercel, que sirve el contenido por HTTPS y con CDN global. Ambos son factores de confianza y velocidad que los buscadores valoran.
+El TP5 permite elegir Tailwind CSS en lugar de React Bootstrap. En este repositorio se eligió Tailwind; por eso, los estilos se aplican principalmente con clases utilitarias en los componentes.
 
-## Cómo ejecutar el proyecto
-Requisitos: tener instalado Node.js y Git.
+## Organización de la aplicación
+
+Las páginas y componentes se encuentran dentro de `src/`:
+
+- `pages/`: vistas `Home`, `Servicios`, `Contacto`, `About`, `Login` y `Error404`.
+- `components/`: elementos reutilizables como `Navbar`, `Footer`, `Hero`, `ServiceGrid`, `ServiceCard` y `CampoFormulario`.
+- `components/routes/Rutas.jsx`: definición de las rutas con React Router.
+- `data/servicios.js`: datos locales utilizados para mostrar los servicios del catálogo.
+- `hooks/useSweetAlert.js`: hook reutilizable para mostrar alertas.
+
+`ServiceGrid` recibe por props la lista y el título que debe mostrar. Recorre la lista con `map()` y crea una `ServiceCard` por servicio; así se evita repetir el marcado de cada tarjeta. La página `Servicios` también transforma con `map()` los profesionales recibidos de la API para presentarlos en la grilla.
+
+### Rutas
+
+| URL | Página |
+| --- | --- |
+| `/` | Inicio |
+| `/servicios` | Catálogo y resultados de búsqueda |
+| `/contacto` | Formulario de contacto |
+| `/about` | Sobre nosotros |
+| `/login` | Inicio de sesión |
+| Cualquier ruta no definida | Página 404 |
+
+## Hooks e interacción
+
+### `useState`
+
+Se utiliza para guardar valores que cambian durante el uso de la aplicación y que deben reflejarse en la interfaz:
+
+- En `Navbar`, controla si el menú móvil está abierto y conserva el texto ingresado en el buscador.
+- En `Servicios`, guarda los profesionales obtenidos de la API, el estado de carga y el mensaje de error.
+- En `useSweetAlert`, controla el estado de las alertas para cerrar el mensaje automáticamente.
+
+Los eventos de formulario y botones actualizan esos estados o realizan acciones de navegación. En el formulario de contacto se valida la información, se muestra el resultado y se reinician los campos al confirmar el envío.
+
+### `useEffect`
+
+- En `Servicios`, inicia la petición a la API cuando se monta la página. También cancela la petición al desmontarse el componente, para evitar actualizar una vista que ya no está activa.
+- En `Servicios`, reacciona a los cambios de la búsqueda y de los resultados para informar cuando no hay profesionales coincidentes.
+- En `useSweetAlert`, programa el cierre de la alerta a los cinco segundos y limpia el temporizador cuando corresponde.
+
+Las dependencias de cada efecto indican qué valores deben cambiar para que React lo ejecute nuevamente; las funciones de limpieza cancelan la petición o el temporizador cuando dejan de ser necesarios.
+
+## Consumo de API y configuración
+
+La página `/servicios` obtiene profesionales desde la URL configurada en `VITE_API_URL`. La petición se realiza con Axios dentro de `useEffect`; la respuesta esperada es un arreglo de profesionales. Para mostrar sus datos se utilizan los campos `id`, `oficio`, `nombre`, `ubicacion` y `foto` (los campos opcionales pueden faltar).
+
+La URL no está escrita directamente en el componente. Para ejecutar el proyecto localmente, crear un archivo `.env` en la raíz:
+
+```env
+VITE_API_URL=https://url-de-la-api
+```
+
+Reemplazar el valor de ejemplo por la URL de la API pública utilizada para el proyecto. Vite expone al navegador las variables que empiezan con `VITE_`. El archivo `.env` está excluido de Git mediante `.gitignore`; no se debe subir al repositorio. En Vercel, configurar `VITE_API_URL` como variable de entorno del proyecto y volver a desplegar.
+
+La interfaz muestra un estado de carga, informa los errores de conexión con SweetAlert2 y presenta los datos cuando la API responde correctamente.
+
+## Diseño responsive y accesibilidad
+
+Tailwind CSS se utiliza para definir colores, tipografías, espaciados, bordes, sombras y distribución. Flexbox aparece, por ejemplo, en la barra de navegación y en el menú móvil; CSS Grid se utiliza en la grilla de tarjetas de servicios. Las clases responsive ajustan la distribución entre una, dos o tres columnas según el ancho de pantalla, además de adaptar la navegación.
+
+Los componentes utilizan elementos semánticos como `header`, `nav`, `main`, `section`, `article` y `footer`. Las imágenes de los servicios incluyen texto alternativo, y los controles del menú y de búsqueda tienen etiquetas accesibles.
+
+## SEO implementado
+
+En `index.html` se configuraron prácticas básicas de SEO:
+
+- Título descriptivo del sitio.
+- Meta descripción relacionada con los servicios ofrecidos.
+- Atributo `lang="es"` y codificación UTF-8.
+- Meta viewport para la correcta visualización en dispositivos móviles.
+- URL canónica del sitio publicado.
+- Metadatos Open Graph para compartir la página en redes sociales.
+- Favicon e imágenes con texto alternativo.
+- Uso de encabezados y estructura semántica en las páginas.
+
+## Requisitos
+
+- Node.js y npm.
+- Git, si se desea clonar el repositorio.
+
+## Instalación y ejecución
+
+Clonar el repositorio e instalar las dependencias:
 
 ```bash
-git clone <URL-del-repositorio>
-cd <carpeta-del-proyecto>
+git clone https://github.com/brisingr2024/OficiosYa-frontend.git
+cd OficiosYa-frontend
 npm install
+```
+
+Crear el archivo `.env` con `VITE_API_URL` como se indica en la sección de API y ejecutar el servidor de desarrollo:
+
+```bash
 npm run dev
 ```
 
-Una vez iniciado, el sitio queda disponible en `http://localhost:5173`.
+Vite informa en la terminal la dirección local; normalmente es `http://localhost:5173`.
 
-## Preguntas frecuentes
+Para generar y probar la versión de producción:
 
-**¿Qué ventaja tiene usar HTML semántico?**
-Mejora tanto el SEO como la accesibilidad, porque buscadores y lectores de pantalla entienden mejor el rol de cada parte de la página.
+```bash
+npm run build
+npm run preview
+```
 
-**¿Por qué React y Vite?**
-React facilita reutilizar componentes y mantener el código ordenado, y Vite acelera el desarrollo con arranque rápido y recarga instantánea.
+También están disponibles `npm run lint` para revisar el código con ESLint.
 
-**¿Por qué Tailwind CSS?**
-Porque permite estilizar directamente desde el marcado con clases utilitarias, resolver el responsive con prefijos como `md:` y `lg:` y mantener un diseño consistente sin escribir tantas reglas CSS propias.
+## Deploy
 
+El sitio está publicado en Vercel:
 
-## Hooks de React: useState
-### ¿Por qué usamos `useState`?
-Necesitamos que la interfaz cambie cuando el usuario envía el formulario, mostrando un mensaje de confirmación. Una variable común no sirve para esto, porque al modificarla React no vuelve a dibujar el componente y la pantalla seguiría igual. Con `useState`, en cambio, cada vez que el estado se actualiza React vuelve a renderizar el componente y la pantalla refleja el cambio de inmediato.
+https://oficios-ya-frontend.vercel.app/
 
-En este caso, `enviado` guarda si el formulario ya fue enviado (`false` si todavía no, `true` si ya se envió), y `setEnviado` es la función que se usa para modificar ese valor.
-
-### ¿Cuándo se ejecuta?
-
-La declaración se ejecuta cuando el componente se carga por primera vez, y ahí `enviado` se inicializa en `false`, por lo que el mensaje de confirmación no se muestra. Luego, cuando el usuario envía el formulario, la función `handleSubmit` llama a `setEnviado(true)`. Ese cambio hace que React vuelva a renderizar el componente y, gracias al renderizado condicional `{enviado && ...}`, aparece el mensaje de confirmación.
-
-## Hooks de React: useEffect
-
-En la página de Contacto usamos `useEffect` para que el mensaje de agradecimiento desaparezca solo, 5 segundos después de enviar el formulario.
-
-**¿Por qué utilizamos useEffect?**
-Porque esperar unos segundos y después ocultar el mensaje es una acción que ocurre por detrás, como consecuencia de que cambió el estado `enviado`. Para este tipo de acciones se usa `useEffect`.
-
-**¿Cuándo se ejecuta?**
-Se ejecuta cuando la página carga y cada vez que `enviado` cambia. Cuando la persona envía el formulario, `enviado` pasa a verdadero, aparece el mensaje y arranca un temporizador de 5 segundos. Al terminar, `enviado` vuelve a falso y el mensaje se oculta.
-
-**¿Qué función cumplen sus dependencias?**
-La dependencia `[enviado]` le indica a React que solo ejecute el efecto cuando `enviado` cambie. Así el temporizador se crea únicamente cuando el mensaje aparece y no en cada cambio de la pantalla.
+La variable `VITE_API_URL` debe configurarse también en las variables de entorno del proyecto de Vercel.
