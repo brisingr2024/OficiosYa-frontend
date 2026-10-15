@@ -1,145 +1,156 @@
-# OficiosYA
+# OficiosYa 
 
-OficiosYA es una aplicación web de frontend que presenta oficios y conecta a personas que necesitan resolver trabajos del hogar con profesionales. Permite explorar un catálogo de servicios, buscar profesionales por oficio y acceder a formularios de contacto.
+Aplicación web para encontrar profesionales de oficios y servicios para el hogar. Este es el segundo repositorio del proyecto: la versión desarrollada con React y Vite, en la que se migraron y organizaron las distintas partes de la interfaz.
 
-## Contenidos
+## Integrantes
 
-- [Funcionalidades](#funcionalidades)
-- [Tecnologías](#tecnologías)
-- [Requisitos](#requisitos)
-- [Instalación y ejecución](#instalación-y-ejecución)
-- [Configuración de la API](#configuración-de-la-api)
-- [Rutas de la aplicación](#rutas-de-la-aplicación)
-- [Estructura del proyecto](#estructura-del-proyecto)
-- [Alcance actual](#alcance-actual)
-- [Equipo](#equipo)
+- Moschino Molina Tobias
+- Gonzalez Raflo Luz
+- Monetti Camila
+
+## Descripción y objetivo
+
+OficiosYa conecta a personas que necesitan resolver un problema del hogar con profesionales de distintos rubros. Se pueden explorar servicios, buscar profesionales por oficio y enviar una consulta desde el formulario de contacto.
+
+El objetivo es facilitar el primer contacto entre quien necesita un servicio y quien lo ofrece, desde una interfaz adaptable a distintos dispositivos.
 
 ## Funcionalidades
 
-- **Inicio:** presenta OficiosYA y muestra un catálogo local de oficios mediante tarjetas.
-- **Búsqueda desde el navbar:** permite buscar profesionales escribiendo un oficio. El término se incluye en el parámetro `servicio` de la URL, por ejemplo, `/servicios?servicio=plomeria`.
-- **Servicios:** consulta trabajadores a una API mediante Axios y filtra los resultados por el campo `oficio`. La búsqueda no distingue mayúsculas ni tildes. Si se entra sin un término, se muestran todos los trabajadores devueltos por la API.
-- **Estados de la consulta:** se muestra un indicador mientras carga; los errores de configuración o conexión se notifican con SweetAlert2. Si no hay coincidencias, se muestra una alerta informativa.
-- **Contacto:** valida los campos requeridos y el formato del email, informa el resultado con SweetAlert2 y limpia el formulario tras confirmar.
-- **Inicio de sesión:** valida email y contraseña y muestra un indicador de espera. La operación es una simulación de interfaz.
-- **Diseño adaptable:** utiliza clases responsive de Tailwind CSS para distintos tamaños de pantalla.
-- **Navegación:** React Router gestiona las rutas del sitio y muestra una página para rutas no encontradas.
-
-Las alertas de SweetAlert2 se cierran automáticamente a los cinco segundos. Este comportamiento está centralizado en un hook con `useEffect`.
+- Página de inicio con presentación del proyecto y catálogo de servicios.
+- Catálogo de oficios con tarjetas generadas dinámicamente.
+- Búsqueda de profesionales por oficio. El término se incluye en la URL como parámetro (`/servicios?servicio=...`), por lo que la búsqueda se puede compartir o volver a abrir.
+- Consulta de profesionales a una API mediante Axios, con estados de carga y error.
+- Mensajes de error, validación y confirmación mediante SweetAlert2.
+- Formulario de contacto con validaciones del navegador. El formulario muestra una confirmación en pantalla; no envía ni almacena los datos en un servidor.
+- Navegación entre páginas y menú adaptable para pantallas pequeñas.
+- Página de error para rutas que no existen.
 
 ## Tecnologías
 
-- React y React DOM
+- React y JavaScript
 - Vite
-- React Router
-- Axios
-- SweetAlert2
-- Tailwind CSS 4
-- JavaScript (ES modules)
+- Tailwind CSS para los estilos y el diseño responsive
+- React Router para la navegación
+- Axios para las peticiones HTTP
+- SweetAlert2 para los mensajes al usuario
+- HTML semántico
+- Git y GitHub para el control de versiones
+- Vercel para el deploy
+
+El TP5 permite elegir Tailwind CSS en lugar de React Bootstrap. En este repositorio se eligió Tailwind; por eso, los estilos se aplican principalmente con clases utilitarias en los componentes.
+
+## Organización de la aplicación
+
+Las páginas y componentes se encuentran dentro de `src/`:
+
+- `pages/`: vistas `Home`, `Servicios`, `Contacto`, `About`, `Login` y `Error404`.
+- `components/`: elementos reutilizables como `Navbar`, `Footer`, `Hero`, `ServiceGrid`, `ServiceCard` y `CampoFormulario`.
+- `components/routes/Rutas.jsx`: definición de las rutas con React Router.
+- `data/servicios.js`: datos locales utilizados para mostrar los servicios del catálogo.
+- `hooks/useSweetAlert.js`: hook reutilizable para mostrar alertas.
+
+`ServiceGrid` recibe por props la lista y el título que debe mostrar. Recorre la lista con `map()` y crea una `ServiceCard` por servicio; así se evita repetir el marcado de cada tarjeta. La página `Servicios` también transforma con `map()` los profesionales recibidos de la API para presentarlos en la grilla.
+
+### Rutas
+
+| URL | Página |
+| --- | --- |
+| `/` | Inicio |
+| `/servicios` | Catálogo y resultados de búsqueda |
+| `/contacto` | Formulario de contacto |
+| `/about` | Sobre nosotros |
+| `/login` | Inicio de sesión |
+| Cualquier ruta no definida | Página 404 |
+
+## Hooks e interacción
+
+### `useState`
+
+Se utiliza para guardar valores que cambian durante el uso de la aplicación y que deben reflejarse en la interfaz:
+
+- En `Navbar`, controla si el menú móvil está abierto y conserva el texto ingresado en el buscador.
+- En `Servicios`, guarda los profesionales obtenidos de la API, el estado de carga y el mensaje de error.
+- En `useSweetAlert`, controla el estado de las alertas para cerrar el mensaje automáticamente.
+
+Los eventos de formulario y botones actualizan esos estados o realizan acciones de navegación. En el formulario de contacto se valida la información, se muestra el resultado y se reinician los campos al confirmar el envío.
+
+### `useEffect`
+
+- En `Servicios`, inicia la petición a la API cuando se monta la página. También cancela la petición al desmontarse el componente, para evitar actualizar una vista que ya no está activa.
+- En `Servicios`, reacciona a los cambios de la búsqueda y de los resultados para informar cuando no hay profesionales coincidentes.
+- En `useSweetAlert`, programa el cierre de la alerta a los cinco segundos y limpia el temporizador cuando corresponde.
+
+Las dependencias de cada efecto indican qué valores deben cambiar para que React lo ejecute nuevamente; las funciones de limpieza cancelan la petición o el temporizador cuando dejan de ser necesarios.
+
+## Consumo de API y configuración
+
+La página `/servicios` obtiene profesionales desde la URL configurada en `VITE_API_URL`. La petición se realiza con Axios dentro de `useEffect`; la respuesta esperada es un arreglo de profesionales. Para mostrar sus datos se utilizan los campos `id`, `oficio`, `nombre`, `ubicacion` y `foto` (los campos opcionales pueden faltar).
+
+La URL no está escrita directamente en el componente. Para ejecutar el proyecto localmente, crear un archivo `.env` en la raíz:
+
+```env
+VITE_API_URL=https://url-de-la-api
+```
+
+Reemplazar el valor de ejemplo por la URL de la API pública utilizada para el proyecto. Vite expone al navegador las variables que empiezan con `VITE_`. El archivo `.env` está excluido de Git mediante `.gitignore`; no se debe subir al repositorio. En Vercel, configurar `VITE_API_URL` como variable de entorno del proyecto y volver a desplegar.
+
+La interfaz muestra un estado de carga, informa los errores de conexión con SweetAlert2 y presenta los datos cuando la API responde correctamente.
+
+## Diseño responsive y accesibilidad
+
+Tailwind CSS se utiliza para definir colores, tipografías, espaciados, bordes, sombras y distribución. Flexbox aparece, por ejemplo, en la barra de navegación y en el menú móvil; CSS Grid se utiliza en la grilla de tarjetas de servicios. Las clases responsive ajustan la distribución entre una, dos o tres columnas según el ancho de pantalla, además de adaptar la navegación.
+
+Los componentes utilizan elementos semánticos como `header`, `nav`, `main`, `section`, `article` y `footer`. Las imágenes de los servicios incluyen texto alternativo, y los controles del menú y de búsqueda tienen etiquetas accesibles.
+
+## Estrategias SEO implementadas
+
+En `index.html` se configuraron prácticas básicas de SEO:
+
+- Título descriptivo del sitio.
+- Meta descripción relacionada con los servicios ofrecidos.
+- Atributo `lang="es"` y codificación UTF-8.
+- Meta viewport para la correcta visualización en dispositivos móviles.
+- URL canónica del sitio publicado.
+- Metadatos Open Graph para compartir la página en redes sociales.
+- Favicon e imágenes con texto alternativo.
+- Uso de encabezados y estructura semántica en las páginas.
 
 ## Requisitos
 
-- Node.js compatible con la versión de Vite instalada en el proyecto.
-- npm.
-- Una URL accesible para la API de trabajadores configurada en `VITE_API_URL`.
+- Node.js y npm.
+- Git, si se desea clonar el repositorio.
 
 ## Instalación y ejecución
 
-Desde la carpeta del proyecto:
+Clonar el repositorio e instalar las dependencias:
 
 ```bash
+git clone https://github.com/brisingr2024/OficiosYa-frontend.git
+cd OficiosYa-frontend
 npm install
 ```
 
-Crear el archivo local `.env` como se describe en [Configuración de la API](#configuración-de-la-api) y luego iniciar el servidor:
+Crear el archivo `.env` con `VITE_API_URL` como se indica en la sección de API y ejecutar el servidor de desarrollo:
 
 ```bash
 npm run dev
 ```
 
-Vite informa en la terminal la dirección local donde se puede abrir la aplicación (normalmente `http://localhost:5173`).
+Vite informa en la terminal la dirección local; normalmente es `http://localhost:5173`.
 
-### Comandos disponibles
+Para generar y probar la versión de producción:
 
 ```bash
-npm run dev      # Inicia el servidor de desarrollo
-npm run build    # Genera la versión de producción en dist/
-npm run preview  # Sirve localmente la última compilación
-npm run lint     # Ejecuta ESLint
+npm run build
+npm run preview
 ```
 
-## Configuración de la API
+También están disponibles `npm run lint` para revisar el código con ESLint.
 
-La página Servicios obtiene los profesionales desde la URL indicada por la variable de entorno `VITE_API_URL`. No se debe escribir la URL de la API directamente en los componentes.
+## Deploy
 
-1. Crear `.env` en la raíz del proyecto.
-2. Definir la URL de la API:
+El sitio está publicado en Vercel:
 
-   ```dotenv
-   VITE_API_URL=https://tu-api.com/trabajadores
-   ```
+https://oficios-ya-frontend.vercel.app/
 
-3. Guardar el archivo y reiniciar el servidor de desarrollo si ya estaba ejecutándose.
-
-El archivo `.gitignore` excluye los archivos `.env*`; el `.env` local no debe subirse al repositorio. Cada persona que clone el proyecto debe configurar su propio archivo.
-
-La API debe responder a una petición `GET` con un arreglo JSON de trabajadores. La interfaz utiliza estos campos:
-
-| Campo | Uso |
-| --- | --- |
-| `id` | Identificador del trabajador y clave de la tarjeta. |
-| `nombre` | Nombre del profesional, mostrado en la descripción de la tarjeta. |
-| `oficio` | Texto utilizado para filtrar y como título de la tarjeta. |
-| `ubicacion` | Ubicación del profesional, mostrada en la descripción. |
-| `foto` | URL de la imagen del profesional, utilizada en la tarjeta. |
-
-`id`, `nombre`, `ubicacion` y `foto` pueden faltar sin impedir que se muestre el oficio; cuando falta `oficio`, se presenta como “Oficio sin especificar” y no coincide con búsquedas de texto.
-
-La página Inicio obtiene sus tarjetas de datos locales en `src/data/servicios.js`; la página Servicios muestra trabajadores recibidos desde la API. Son dos listados distintos.
-
-## Rutas de la aplicación
-
-| Ruta | Página |
-| --- | --- |
-| `/` | Inicio y catálogo local de servicios. |
-| `/servicios` | Todos los profesionales que devuelve la API. |
-| `/servicios?servicio=plomeria` | Profesionales cuyo oficio coincide con el término buscado. |
-| `/contacto` | Formulario de contacto. |
-| `/login` | Formulario de inicio de sesión simulado. |
-| `/about` | Información del proyecto y del equipo. |
-| Cualquier otra ruta | Página no encontrada. |
-
-## Estructura del proyecto
-
-```text
-.
-├── public/                  # Recursos servidos directamente, como el favicon y el logo
-├── src/
-│   ├── assets/              # Imágenes y recursos importados por los componentes
-│   ├── components/          # Navbar, footer, hero, tarjetas, formularios y rutas
-│   ├── data/                # Catálogo local de servicios
-│   ├── hooks/               # Hooks compartidos, como las alertas temporizadas
-│   ├── pages/               # Inicio, servicios, contacto, login, about y 404
-│   ├── App.jsx              # Entrada de la interfaz
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx             # Montaje de React
-├── .env                     # Configuración local, no versionada
-├── .gitignore
-├── index.html
-├── package.json
-└── vite.config.js
-```
-
-## Alcance actual
-
-- El formulario de contacto solo valida los datos, muestra una confirmación y reinicia sus campos; actualmente no envía la información a un servidor.
-- El inicio de sesión es una simulación visual: no autentica usuarios ni consulta un backend.
-- El botón “Ver servicio” de las tarjetas todavía no navega a una página de detalle.
-- El catálogo de Inicio es estático y no depende de la API. El listado y el filtro de la ruta Servicios sí dependen de la API y de que esta responda correctamente.
-
-## Equipo
-
-- Tobias Moschino Molina
-- Luz Priscila Gonzalez Raflo
-- Monetti
+La variable `VITE_API_URL` debe configurarse también en las variables de entorno del proyecto de Vercel.
